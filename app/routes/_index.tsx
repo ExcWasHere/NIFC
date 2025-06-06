@@ -1,4 +1,5 @@
 import type { MetaFunction } from "@remix-run/node";
+import Footer from "~/common/footer";
 import Header from "~/common/header";
 import IndexHero from "~/components/HomePage/Contain1";
 import TrustedPartnersSection from "~/components/HomePage/Contain2";
@@ -7,8 +8,8 @@ import IndexIntroduction from "~/components/HomePage/Contain4";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
+    { title: "Sembiru | HomePage" },
+    { name: "description", content: "Welcome to Sembiru!" },
   ];
 };
 
@@ -19,5 +20,6 @@ export default function Index() {
   <TrustedPartnersSection />
   <IndexFeatures />
   <IndexIntroduction />
+  <Footer />
   </>;
 }
