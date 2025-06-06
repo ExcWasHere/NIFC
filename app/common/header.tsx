@@ -46,7 +46,7 @@ const Header: React.FC<HeaderProps> = () => {
     };
   }, [currentPage.pathname]);
 
-  const navItems = ["Home", "Profile", "Programs", "Galeri", "News"];
+  const navItems = ["Home", "About-Us", "Programs", "Login", "Register"];
 
   const NavLinks = () => (
     <>
@@ -201,7 +201,7 @@ const Header: React.FC<HeaderProps> = () => {
       >
         <div className="flex items-center">
           <h1 className="text-xl md:text-2xl font-bold transition-transform duration-300 hover:scale-105">
-            Manarul<span className="text-sky-400">Ilmi</span>
+            Sem<span className="text-sky-400">biru</span>
           </h1>
         </div>
 
@@ -245,7 +245,7 @@ const Header: React.FC<HeaderProps> = () => {
       >
         <div className="p-4 border-b border-gray-100 flex justify-between items-center">
           <h1 className="text-xl font-bold">
-            Manarul<span className="text-sky-500">Ilmi</span>
+            Sem<span className="text-sky-500">biru</span>
           </h1>
           <button onClick={() => setIsMobileMenuOpen(false)}>
             <X className="text-sky-500" />
