@@ -3,6 +3,7 @@ import Header from "~/common/header";
 import IndexHero from "~/components/HomePage/Contain1";
 import TrustedPartnersSection from "~/components/HomePage/Contain2";
 import IndexFeatures from "~/components/HomePage/Contain3";
+import IndexIntroduction from "~/components/HomePage/Contain4";
 
 export const meta: MetaFunction = () => {
   return [
@@ -17,5 +18,6 @@ export default function Index() {
   <IndexHero />
   <TrustedPartnersSection />
   <IndexFeatures />
+  <IndexIntroduction />
   </>;
 }
