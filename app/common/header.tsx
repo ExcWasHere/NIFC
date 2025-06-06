@@ -12,11 +12,11 @@ const Header: React.FC<HeaderProps> = () => {
   const currentPage = useLocation();
 
   const programSubItems = [
-    { name: "Keagamaan", path: "/keagamaan" },
-    { name: "Sosial Keumatan", path: "/sosial-keumatan" },
-    { name: "Pendidikan", path: "/pendidikan" },
-    { name: "Kemanusiaan", path: "/kemanusiaan" },
-    { name: "Wakaf", path: "/wakaf" }
+    { name: "Dashboard", path: "/dashboard" },
+    { name: "Emolog", path: "/emolog" },
+    { name: "Hope Scan", path: "/hope-scan" },
+    { name: "Release Your Emotion", path: "/release-emotion" },
+    { name: "Social Flow", path: "/social-flow" }
   ];
 
   useEffect(() => {
