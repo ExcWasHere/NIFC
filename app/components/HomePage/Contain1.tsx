@@ -19,16 +19,16 @@ const heroContent: SlideContent[] = [
   {
     id: 2,
     title: "Peduli Kesehatan Mental Mulai dari Sekarang!",
-    subtitle: "Melestarikan Tradisi, Merangkul Teknologi",
+    subtitle: "Sayangi diri, Dengan Mental Health Mandiri",
     category: "Misi",
-    image: "E-Bus1.jpg",
+    image: "NIFC2.jpg",
   },
   {
     id: 3,
-    title: "Bersama Menuju Smart City",
-    subtitle: "Electric Bus yang Ramah Lingkungan",
+    title: "Bersama Membangun Generasi Penerus Bangsa",
+    subtitle: "Mental yang Sehat membuat Produktivitas Meningkat",
     category: "Tujuan",
-    image: "E-Bus4.jpg",
+    image: "NIFC3.jpg",
   },
 ];
 

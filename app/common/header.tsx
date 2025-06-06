@@ -61,8 +61,8 @@ const Header: React.FC<HeaderProps> = () => {
             <div 
               className={`relative py-2 px-3 rounded-lg transition-all duration-300 flex items-center
                 ${activeItem === item 
-                  ? "text-green-500 font-bold" 
-                  : "hover:text-green-500"}`}
+                  ? "text-sky-500 font-bold" 
+                  : "hover:text-sky-500"}`}
             >
               <span className="mr-2">{item}</span>
               <ChevronDown 
@@ -78,7 +78,7 @@ const Header: React.FC<HeaderProps> = () => {
                     <a
                       key={subItem.name}
                       href={subItem.path}
-                      className="block px-4 py-2 hover:bg-green-100 hover:text-green-500 transition-colors"
+                      className="block px-4 py-2 hover:bg-sky-100 hover:text-sky-500 transition-colors"
                       onClick={() => {
                         setActiveItem("Programs");
                         setIsProgramsDropdownOpen(false);
@@ -99,8 +99,8 @@ const Header: React.FC<HeaderProps> = () => {
               }`}
               className={`py-2 px-3 rounded-lg transition-all duration-300 block 
                 ${activeItem === item 
-                  ? "text-green-500 font-bold" 
-                  : "hover:text-green-500"}`}
+                  ? "text-sky-500 font-bold" 
+                  : "hover:text-sky-500"}`}
               onClick={() => {
                 setActiveItem(item);
                 setIsMobileMenuOpen(false);
@@ -122,8 +122,8 @@ const Header: React.FC<HeaderProps> = () => {
             <button 
               className={`block w-full text-left py-3 px-4 rounded-lg transition-all duration-200 ${
                 activeItem === item
-                  ? "bg-green-500 text-white"
-                  : "hover:bg-green-100 hover:text-green-500"
+                  ? "bg-sky-500 text-white"
+                  : "hover:bg-sky-100 hover:text-sky-500"
               }`}
               onClick={() => setIsProgramsDropdownOpen(!isProgramsDropdownOpen)}
               onKeyDown={(e) => {
@@ -153,7 +153,7 @@ const Header: React.FC<HeaderProps> = () => {
                     <a
                       key={subItem.name}
                       href={subItem.path}
-                      className="block mt-2 py-2 bg-green-50 rounded-lg text-green-700 hover:bg-green-100 transition-colors"
+                      className="block mt-2 py-2 bg-sky-50 rounded-lg text-sky-700 hover:bg-sky-100 transition-colors"
                       onClick={() => {
                         setActiveItem("Programs");
                         setIsMobileMenuOpen(false);
@@ -174,8 +174,8 @@ const Header: React.FC<HeaderProps> = () => {
               }`}
               className={`block py-3 px-4 rounded-lg transition-all duration-200 ${
                 activeItem === item
-                  ? "bg-green-500 text-white"
-                  : "hover:bg-green-100 hover:text-green-500"
+                  ? "bg-sky-500 text-white"
+                  : "hover:bg-sky-100 hover:text-sky-500"
               }`}
               onClick={() => {
                 setActiveItem(item);
@@ -201,7 +201,7 @@ const Header: React.FC<HeaderProps> = () => {
       >
         <div className="flex items-center">
           <h1 className="text-xl md:text-2xl font-bold transition-transform duration-300 hover:scale-105">
-            Manarul<span className="text-green-400">Ilmi</span>
+            Manarul<span className="text-sky-400">Ilmi</span>
           </h1>
         </div>
 
@@ -214,14 +214,14 @@ const Header: React.FC<HeaderProps> = () => {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-2xl p-2 rounded-full hover:bg-green-100 transition-colors duration-200"
+          className="md:hidden text-2xl p-2 rounded-full hover:bg-sky-100 transition-colors duration-200"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Toggle menu"
         >
           {isMobileMenuOpen ? (
-            <X className="text-green-500" />
+            <X className="text-sky-500" />
           ) : (
-            <Menu className={isScrolled ? "text-green-500" : "text-white"} />
+            <Menu className={isScrolled ? "text-sky-500" : "text-white"} />
           )}
         </button>
       </div>
@@ -245,10 +245,10 @@ const Header: React.FC<HeaderProps> = () => {
       >
         <div className="p-4 border-b border-gray-100 flex justify-between items-center">
           <h1 className="text-xl font-bold">
-            Manarul<span className="text-green-500">Ilmi</span>
+            Manarul<span className="text-sky-500">Ilmi</span>
           </h1>
           <button onClick={() => setIsMobileMenuOpen(false)}>
-            <X className="text-green-500" />
+            <X className="text-sky-500" />
           </button>
         </div>
         <nav className="py-6 text-gray-800">
