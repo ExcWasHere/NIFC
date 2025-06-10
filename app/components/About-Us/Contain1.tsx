@@ -23,7 +23,7 @@ const profileList = [
 
 export default function AboutUsTeam(): JSX.Element {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-sky-50 to-white py-16">
+    <div className="min-h-screen bg-white py-16">
       <div className="container mx-auto px-4 py-16 max-w-7xl">
         <div className="flex flex-col md:flex-row justify-between items-center gap-12">
           <div className="text-center md:text-left max-w-2xl">
