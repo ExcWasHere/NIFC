@@ -101,13 +101,13 @@ export default function TrustedPartnersSection() {
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8">
           <div className="text-center group">
             <div className="bg-white rounded-2xl p-6 shadow-md hover:shadow-lg transition-all duration-300 group-hover:scale-105">
-              <div className="text-3xl font-bold text-sky-500 mb-2">100+</div>
+              <div className="text-3xl font-bold text-sky-500 mb-2">50+</div>
               <div className="text-gray-600 text-sm">Perusahaan Partner</div>
             </div>
           </div>
           <div className="text-center group">
             <div className="bg-white rounded-2xl p-6 shadow-md hover:shadow-lg transition-all duration-300 group-hover:scale-105">
-              <div className="text-3xl font-bold text-sky-500 mb-2">50M+</div>
+              <div className="text-3xl font-bold text-sky-500 mb-2">50Jt+</div>
               <div className="text-gray-600 text-sm">Pengguna Aktif</div>
             </div>
           </div>
