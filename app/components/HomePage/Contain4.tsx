@@ -5,19 +5,19 @@ interface ProcessProps {
 
 const processList: ProcessProps[] = [
   {
-    title: "Registrasi dan Assessment Awal",
+    title: "Registrasi Awal",
     subtitle:
-      "Mulai dengan mendaftar dan mengisi assessment awal tentang kondisi mental health Anda, seperti tingkat stres, mood, dan riwayat kesehatan mental.",
+      "Mulai dengan mendaftar dan bergabung bersama kami.",
   },
   {
-    title: "AI Analisis dan Rekomendasi Personal",
+    title: "Input Emosi Anda Hari Ini",
     subtitle:
-      "Dengan teknologi AI canggih, kami akan menganalisis data Anda dan memberikan rekomendasi program terapi yang sesuai dengan kebutuhan mental health Anda.",
+      "Dengan menggunakan fitur Emolog, Anda dapat menginput Emosi Anda setiap hari dan AI kami akan mengkalkulasi nya.",
   },
   {
-    title: "Mulai Program dan Tracking Progress",
+    title: "Statistik User",
     subtitle:
-      "Setelah mendapatkan rekomendasi yang tepat, mulai program terapi dan self-care Anda. Pantau progress kesehatan mental dengan fitur tracking yang komprehensif.",
+      "Semua hasil kalkulasi akan ditampilkan di Dashboard Anda, Yeay! sekarang Anda dapat menjelajahi semua fitur kami.",
   },
 ];
 
@@ -27,14 +27,11 @@ export default function IndexIntroduction() {
       <div className="container mx-auto px-4 py-16 w-[90vw]">
         <div className="flex flex-col lg:flex-row justify-between gap-12 mb-20">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 leading-tight max-w-xl tracking-tight">
-            Perkenankan saya memaparkan{" "}
-            <span className="text-sky-500">mekanisme kerjanya.</span>
+            Tips to{" "}
+            <span className="text-sky-500">Use</span>
           </h1>
           <p className="max-w-2xl text-xl md:text-2xl text-gray-600 leading-relaxed font-light italic">
-            Kami hadir untuk memandu Anda langkah demi langkah dalam perjalanan 
-            kesehatan mental. Dengan antarmuka yang intuitif dan dukungan AI yang 
-            personal, Anda dapat mengakses berbagai program self-care 
-            yang dirancang khusus untuk Anda.
+            Kami hadir untuk memabantu Anda mengelola kesehatan mental dengan cara yang mudah dan menyenangkan.
           </p>
         </div>
 

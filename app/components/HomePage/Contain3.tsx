@@ -79,7 +79,7 @@ export default function IndexFeatures(): JSX.Element {
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
       <div className="container mx-auto px-4 py-16 w-[90vw]">
         <div className="flex flex-col lg:flex-row justify-between gap-12 mb-20">
-          <p className="max-w-2xl text-xl md:text-2xl text-gray-600 leading-relaxed font-light italic">
+          <p className="max-w-2xl text-xl md:text-2xl text-gray-600 leading-relaxed font-light italic text-justify">
             Sembiru adalah inovasi digital yang membantu pengguna memantau dan memahami kesehatan mental secara mandiri.
             Sembiru hadir sebagai jawaban dari banyaknya masalah kesehatan mental di masa kini,
             Sembiru akan selalu siap menemani anda dalam kondisi apapun.

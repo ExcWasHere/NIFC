@@ -15,10 +15,10 @@ export default function AboutUsContact(): JSX.Element {
         <div className="flex flex-col max-w-xl space-y-10 text-black">
           <h1 className="text-4xl md:text-6xl font-semibold leading-snug ">
             Have a <span className="text-sky-600">question?</span> Our team is
-            happy to assist you
+            happy to help you
           </h1>
           <p className="text-base md:text-lg max-w-[28rem]">
-            Ask about Serene, our services, or anything else. Our highly trained
+            Ask about Sembiru, our services, or anything else. Our highly trained
             reps are standing by, ready to help.
           </p>
           <hr className="border-t-2 border-gray-600" />

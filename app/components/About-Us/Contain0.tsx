@@ -70,14 +70,13 @@ export default function TentangKamiPendahuluan(): JSX.Element {
               </div>
               
               {/* Mission Statement */}
-              <div className="mt-12 p-6 bg-white/50 backdrop-blur-sm rounded-xl border border-sky-100 shadow-lg">
+              <div className="mt-12 p-6 bg-white/50 backdrop-blur-sm rounded-xl border border-sky-100 shadow-lg text-justify">
                 <h4 className="text-xl font-semibold text-gray-900 mb-3 flex items-center">
                   <div className="w-2 h-2 bg-sky-600 rounded-full mr-3"></div>
-                  Visi Kami
+                  Pedoman Kami
                 </h4>
                 <p className="text-gray-700 leading-relaxed">
-                  Menjadi platform terdepan yang menghubungkan setiap individu dengan kesehatan mental yang berkelanjutan, 
-                  menciptakan komunitas yang mendukung pertumbuhan dan penyembuhan holistik.
+                  Setiap langkah Sembiru didasari oleh komitmen untuk memberikan pelayanan kesehatan mental yang berkualitas, profesional, dan penuh empati. Kami percaya bahwa setiap individu berhak mendapatkan dukungan yang mereka butuhkan untuk mencapai kesejahteraan mental yang optimal.
                 </p>
               </div>
             </div>

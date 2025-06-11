@@ -34,8 +34,8 @@ export default function AboutUsTeam(): JSX.Element {
               </span>
             </h1>
             <p className="mt-6 text-lg text-gray-600 leading-relaxed">
-              Melepaskan Potensi, Menggerakkan Transformasi: Memberdayakan
-              Pikiran untuk Inovasi, Menginspirasi, dan Memimpin Masa Depan.
+              Melepaskan Potensi, Menggerakkan Transformasi, Memberdayakan
+              Pikiran untuk Inovasi dan Menginspirasi.
             </p>
           </div>
           <div className="relative group">
@@ -84,24 +84,24 @@ export default function AboutUsTeam(): JSX.Element {
 
       <div className="container mx-auto px-4 py-16 max-w-7xl">
         <div className="flex flex-col md:flex-row justify-between items-center gap-12">
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 text-center md:text-left">
-            Bergabunglah dengan <br />
-            <span className="text-sky-600">tim kami</span>
-          </h1>
-          <div className="max-w-xl">
-            <p className="text-gray-600 leading-relaxed text-center md:text-left">
-              Kami percaya bahwa dibutuhkan orang-orang hebat untuk membuat
-              produk hebat. Itulah mengapa kami tidak hanya merekrut profesional
-              yang sempurna, tetapi orang-orang yang menghayati nilai-nilai
-              perusahaan kami.
-            </p>
-            <div className="mt-8 flex items-center justify-center md:justify-start group">
-              <button className="text-sky-600 font-semibold group-hover:text-sky-700 transition-colors duration-300 flex items-center gap-1">
-                Lihat opsi terbuka
-                <BiChevronRight className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300" />
-              </button>
-            </div>
+          <div className="max-w-xl order-2 md:order-1">
+          <p className="text-gray-600 leading-relaxed text-center md:text-left">
+            Kami percaya bahwa dibutuhkan orang-orang hebat untuk membuat
+            produk hebat. Itulah mengapa kami tidak hanya merekrut profesional
+            yang sempurna, tetapi orang-orang yang berniat dam berminat dengan
+            perusahaan kami.
+          </p>
+          <div className="mt-8 flex items-center justify-center md:justify-start group">
+            <button className="text-sky-600 font-semibold group-hover:text-sky-700 transition-colors duration-300 flex items-center gap-1">
+              Yuk Daftarin!
+              <BiChevronRight className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300" />
+            </button>
           </div>
+        </div>
+          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 text-center md:text-right order-1 md:order-2">
+        Bergabunglah dengan <br />
+        <span className="text-sky-600">tim kami</span>
+          </h1>
         </div>
       </div>
     </div>
