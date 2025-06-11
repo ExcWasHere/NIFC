@@ -33,7 +33,7 @@ export default function Footer() {
                 Our Story
               </Link>
               <Link to="/why-terratopia" className="hover:text-sky-200 transition-colors">
-                Why TerraTopia?
+                Why Sembiru?
               </Link>
               <Link to="/testimonial" className="hover:text-sky-200 transition-colors">
                 Testimonials
@@ -105,7 +105,7 @@ export default function Footer() {
                     Our Story
                   </Link>
                   <Link to="/why-terratopia" className="hover:text-sky-200">
-                    Why TerraTopia?
+                    Why Sembiru?
                   </Link>
                   <Link to="/testimonial" className="hover:text-sky-200">
                     Testimonials
