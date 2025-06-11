@@ -21,7 +21,7 @@ export default function TentangKamiPendahuluan(): JSX.Element {
                     <div className="absolute -inset-2 bg-gradient-to-r from-sky-600 to-sky-400 rounded-full blur-lg opacity-50 group-hover/image:opacity-75 transition duration-500"></div>
                     <div className="absolute -inset-1 bg-sky-200 rounded-full blur-sm group-hover/image:blur-md transition duration-500"></div>
                     <img
-                      src="/about-us/profile/mud.jpg"
+                      src="/about-us/profile/exc.jpg"
                       alt="CEO Sembiru"
                       className="relative w-24 h-24 md:w-32 md:h-32 object-cover rounded-full shadow-2xl border-4 border-white transform group-hover/image:scale-105 transition duration-500"
                     />

@@ -5,19 +5,19 @@ const profileList = [
     id: 1,
     name: "Excell Christian",
     job: "Fullstack Developer",
-    image: "/about-us/profile/mud.jpg",
+    image: "/about-us/profile/exc.jpg",
   },
   {
     id: 2,
     name: "Dewi Chalissa Rania",
     job: "UI/UX Designer",
-    image: "/about-us/profile/farrel.jpg",
+    image: "/about-us/profile/icha.jpg",
   },
   {
     id: 3,
     name: "Gaduh Prakoso",
     job: "Frontend Developer",
-    image: "/about-us/profile/excell.jpg",
+    image: "/about-us/profile/gaduh.jpg",
   },
 ];
 
