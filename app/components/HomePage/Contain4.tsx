@@ -61,7 +61,7 @@ export default function IndexIntroduction() {
             <div className="relative">
               <div className="absolute inset-0 bg-sky-200 rounded-xl transform rotate-3"></div>
               <img
-                src="/index/mental-health-intro.jpg"
+                src="Homepage2.jpg"
                 alt="Mental Health Process Illustration"
                 className="relative rounded-xl shadow-xl w-full h-[500px] object-cover transform transition-all duration-300 hover:-rotate-[1deg] hover:scale-[1.02]"
               />

@@ -101,7 +101,7 @@ export default function IndexFeatures(): JSX.Element {
             <div className="relative">
               <div className="absolute inset-0 bg-sky-200 rounded-xl transform -rotate-3"></div>
               <img
-                src="/index/mental-health-features.jpg"
+                src="Homepage1.jpg"
                 alt="Mental Health AI Support"
                 className="relative rounded-xl shadow-xl w-full h-[400px] hover:rotate-1 hover:scale-[1.02] object-cover transform transition-transform duration-300"
               />

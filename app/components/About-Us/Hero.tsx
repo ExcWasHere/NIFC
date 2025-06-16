@@ -3,7 +3,7 @@ export default function AboutUsHero() {
   return (
     <div className="h-[40vh] relative">
       <img
-        src="./about-us/hero1.png"
+        src="./about-us/hero2.jpg"
         alt=""
         className="absolute inset-0 object-cover h-full w-full"
       />
