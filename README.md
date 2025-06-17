@@ -2,7 +2,7 @@
 
 Inovasi digital yang dirancang untuk membantu pengguna memantau dan memahami kesehatan mental mereka secara mandiri. Menggabungkan pendekatan interaktif dan informatif dengan berbagai fitur yang mendukung kesejahteraan mental secara menyeluruh dan berkelanjutan.
 
-🌐 **Live Demo:** [https://nifc.vercel.app/](https://nifc.vercel.app/)
+🌐 **Deployed on:** [https://nifc.vercel.app/](https://nifc.vercel.app/)
 
 ## Tentang Sembiru
 
