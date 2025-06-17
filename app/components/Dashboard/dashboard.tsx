@@ -27,7 +27,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => setAnimateStats(true), 300);
-    const mockUserName = 'John Doe';
+    const mockUserName = 'Icha';
     if (mockUserName) {
       setUserName(mockUserName);
     }

@@ -37,7 +37,7 @@ export async function action({ request }: ActionFunctionArgs) {
     return json({ errors }, { status: 400 });
   }
 
-  if (email === "admin@sembiru.com" && password === "password") {
+  if (email === "DewiChalissa01@gmail.com" && password === "password") {
     const session = await getSession(request.headers.get("Cookie"));
     session.set("userId", "1");
     session.set("userEmail", email);
