@@ -303,7 +303,7 @@ const ReleaseEmotionPage = () => {
           <div className="flex items-center space-x-4">
             <div className="relative">
               <button className="flex items-center px-4 py-2 bg-gradient-to-r from-sky-500 to-blue-600 text-white rounded-xl hover:shadow-lg transition-all duration-300 transform hover:scale-105">
-                <span className="mr-2">Excell</span>
+                <span className="mr-2">Icha</span>
                 <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
               </button>
             </div>
