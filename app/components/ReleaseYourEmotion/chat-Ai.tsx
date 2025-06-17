@@ -129,8 +129,6 @@ const ReleaseEmotionPage = () => {
     setCurrentCharacter(characterId);
     setShowCharacterSelection(false);
     setMessages([]);
-    
-    // Add greeting message
     setTimeout(() => {
       const character = characters[characterId];
       setMessages([{ sender: "ai", text: character.greeting, timestamp: new Date() }]);
