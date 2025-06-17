@@ -92,10 +92,10 @@ export default function AboutUsTeam(): JSX.Element {
             perusahaan kami.
           </p>
           <div className="mt-8 flex items-center justify-center md:justify-start group">
-            <button className="text-sky-600 font-semibold group-hover:text-sky-700 transition-colors duration-300 flex items-center gap-1">
+            <a href="https://linktr.ee/Sembiru" className="text-sky-600 font-semibold group-hover:text-sky-700 transition-colors duration-300 flex items-center gap-1">
               Yuk Daftarin!
               <BiChevronRight className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300" />
-            </button>
+            </a>
           </div>
         </div>
           <h1 className="text-4xl md:text-6xl font-bold text-gray-900 text-center md:text-right order-1 md:order-2">

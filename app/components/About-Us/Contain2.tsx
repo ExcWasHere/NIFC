@@ -23,9 +23,9 @@ export default function AboutUsContact(): JSX.Element {
           </p>
           <hr className="border-t-2 border-gray-600" />
           <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 items-center">
-            <button className="flex items-center justify-between px-8 py-4 bg-sky-200 text-black rounded-xl shadow-xl font-bold hover:scale-110 transition-all duration-500">
+            <a href="https://linktr.ee/Sembiru" className="flex items-center justify-between px-8 py-4 bg-sky-200 text-black rounded-xl shadow-xl font-bold hover:scale-110 transition-all duration-500">
               Contact Us <BiChevronRight size={25} />
-            </button>
+            </a>
           </div>
         </div>
       </main>
