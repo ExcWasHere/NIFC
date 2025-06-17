@@ -364,7 +364,7 @@ const Dashboard = () => {
               <div className="flex items-center justify-between mb-6 sm:mb-8">
                 <h3 className="text-xl sm:text-2xl font-bold text-gray-800">Interaksi Sosial Terbaru</h3>
                 <a
-                  href="/social-flow"
+                  href="/emolog"
                   className="px-3 py-2 sm:px-5 sm:py-3 bg-gradient-to-r from-sky-500 to-cyan-600 text-white rounded-xl hover:from-sky-600 hover:to-cyan-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 font-semibold text-sm flex items-center"
                 >
                   <Plus className="w-4 h-4 mr-1 sm:mr-2" />
