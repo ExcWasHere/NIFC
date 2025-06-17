@@ -42,7 +42,7 @@ export default function AboutUsTeam(): JSX.Element {
             <div className="absolute -inset-1 bg-gradient-to-r from-sky-600 to-sky-500 rounded-lg blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
             <div className="relative">
               <img
-                src="/about-us/templateTeam.jpeg"
+                src="/about-us/profile/team7v2.jpg"
                 alt="Team"
                 className="w-[300px] h-[150px] md:w-[400px] md:h-[200px] object-cover rounded-lg shadow-xl transform rotate-3 transition duration-500 group-hover:rotate-0"
                 style={{ objectPosition: "top bottom" }}

@@ -334,9 +334,9 @@ const HopeScanPage = () => {
                     <p className="text-blue-700 mb-4">
                       Berdasarkan hasil analisis, kami merekomendasikan untuk segera melakukan konsultasi dengan konselor. Skor risiko Anda memerlukan perhatian profesional.
                     </p>
-                    <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:shadow-lg">
+                    <a href="/consultation" className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:shadow-lg">
                       Jadwalkan Sekarang
-                    </button>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -395,10 +395,10 @@ const HopeScanPage = () => {
                 </div>
               </div>
               
-              <button className="w-full bg-red-600 hover:bg-red-700 text-white px-4 py-3 rounded-xl font-semibold flex items-center justify-center mt-6 transition-all duration-300 hover:shadow-lg">
+              <a href="/emergency-call" className="w-full bg-red-600 hover:bg-red-700 text-white px-4 py-3 rounded-xl font-semibold flex items-center justify-center mt-6 transition-all duration-300 hover:shadow-lg">
                 <AlertTriangle className="w-5 h-5 mr-2" />
                 <span>Bantuan Darurat</span>
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -410,10 +410,10 @@ const HopeScanPage = () => {
               <BookOpen className="w-6 h-6 mr-2" />
               Catatan Harian
             </h2>
-            <button className="bg-sky-600 hover:bg-sky-700 text-white px-6 py-3 rounded-xl font-semibold flex items-center transition-all duration-300 hover:shadow-lg">
+            <a href="/emolog" className="bg-sky-600 hover:bg-sky-700 text-white px-6 py-3 rounded-xl font-semibold flex items-center transition-all duration-300 hover:shadow-lg cursor-pointer">
               <Plus className="w-4 h-4 mr-2" />
               Tambah Catatan
-            </button>
+            </a>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -451,9 +451,21 @@ const HopeScanPage = () => {
           </div>
         </div>
 
-        {/* Footer */}
-        <div className="text-center text-gray-500 text-sm py-8">
-          © 2025 Sembiru. Hak Cipta Dilindungi.
+       {/* Footer */}
+        <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-gray-200">
+          <div className="flex flex-col md:flex-row items-center justify-between">
+            <div className="text-xs sm:text-sm text-gray-600 mb-4 md:mb-0 font-medium text-center md:text-left">
+              © 2025 <span className="font-bold bg-gradient-to-r from-sky-600 to-blue-600 bg-clip-text text-transparent">Sembiru</span>. Hak Cipta Dilindungi.
+            </div>
+            <div className="flex items-center space-x-6 sm:space-x-8">
+              <a href="/about-us" className="text-xs sm:text-sm text-sky-600 hover:text-sky-800 transition-colors font-semibold">
+                About-Us
+              </a>
+              <a href="https://linktr.ee/Sembiru" className="text-xs sm:text-sm text-sky-600 hover:text-sky-800 transition-colors font-semibold">
+                Bantuan
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
