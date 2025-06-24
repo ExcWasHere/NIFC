@@ -1,6 +1,3 @@
-import { json, LoaderFunctionArgs, redirect } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
-import { getSession, commitSession } from "~/utils/session.server"; // Added commitSession import
 import React, { useState, useEffect } from "react";
 import {
   Home,
@@ -11,7 +8,6 @@ import {
   FileText,
   Bell,
   ChevronDown,
-  BarChart3,
   Smile,
   ArrowRight,
   Menu,
@@ -20,18 +16,87 @@ import {
   Plus,
 } from "lucide-react";
 
+import {
+  BarChart,
+  Bar,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
+
+const emotionToScore = {
+  "Sangat Baik": 5,
+  "Baik": 4,
+  "Biasa": 3,
+  "Sedih": 2,
+  "Cemas": 1,
+  "Marah": 0,
+};
+
 interface DashboardProps {
   userName: string;
   userId: string;
   userEmail: string;
 }
 
-const Dashboard = ({ userName }: DashboardProps) => {
+const Dashboard = ({ userName, userId }: DashboardProps) => {
   const [activeTab, setActiveTab] = useState("dashboard");
   const [showNotifications, setShowNotifications] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [animateStats, setAnimateStats] = useState(false);
+  interface EmologItem {
+    id: string;
+    interaction_with?: string;
+    activity?: string;
+    date?: string;
+    emotion?: string;
+  }
+
+  const [emologData, setEmologData] = useState<EmologItem[]>([]);
+
+  useEffect(() => {
+    const fetchEmologStats = async () => {
+      try {
+        const res = await fetch(
+          `http://localhost:5000/api/emolog?user_id=${userId}`
+        );
+        const data = await res.json();
+        setEmologData(data);
+        console.log("Emolog from API:", data);
+      } catch (error) {
+        console.error("Gagal ambil data emolog:", error);
+      }
+    };
+
+    fetchEmologStats();
+  }, []);
+
+  const chartData = emologData.map((item) => ({
+    date: item.date,
+    score: emotionToScore[item.emotion] ?? 0,
+  }));
+
+  const calculateAverageEmotion = () => {
+    const skor = {
+      "Sangat Baik": 5,
+      Baik: 4,
+      Biasa: 3,
+      Sedih: 2,
+      Cemas: 1,
+      Marah: 0,
+    };
+
+    if (!emologData.length) return 0;
+
+    const total = emologData.reduce(
+      (sum, item) => sum + (skor[item.emotion] ?? 0),
+      0
+    );
+    return (total / emologData.length).toFixed(1);
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => setAnimateStats(true), 300);
@@ -39,21 +104,20 @@ const Dashboard = ({ userName }: DashboardProps) => {
   }, []);
 
   const getFirstName = (fullName?: string) => {
-  if (!fullName || typeof fullName !== "string") return "Pengguna";
-  return fullName.trim().split(" ")[0];
-};
+    if (!fullName || typeof fullName !== "string") return "Pengguna";
+    return fullName.trim().split(" ")[0];
+  };
 
-const getInitials = (fullName?: string) => {
-  if (!fullName || typeof fullName !== "string") return "P";
-  return fullName
-    .trim()
-    .split(" ")
-    .map((name) => name[0])
-    .join("")
-    .toUpperCase()
-    .slice(0, 2);
-};
-
+  const getInitials = (fullName?: string) => {
+    if (!fullName || typeof fullName !== "string") return "P";
+    return fullName
+      .trim()
+      .split(" ")
+      .map((name) => name[0])
+      .join("")
+      .toUpperCase()
+      .slice(0, 2);
+  };
 
   const sidebarItems = [
     {
@@ -103,7 +167,7 @@ const getInitials = (fullName?: string) => {
   const statsCards = [
     {
       title: "Status Emosi",
-      value: "7.5",
+      value: calculateAverageEmotion(),
       description: "Skor Rata-rata",
       change: "+2.5 dari minggu lalu",
       changeType: "positive",
@@ -147,35 +211,18 @@ const getInitials = (fullName?: string) => {
     },
   ];
 
-  const recentInteractions = [
-    {
-      id: 1,
-      type: "Keluarga",
-      activity: "Makan malam bersama",
-      time: "Kemarin",
-      sentiment: "Positif",
-      avatar: "KL",
-      color: "from-sky-400 to-sky-600",
-    },
-    {
-      id: 2,
-      type: "Teman",
-      activity: "Olahraga bersama",
-      time: "2 hari lalu",
-      sentiment: "Positif",
-      avatar: "TM",
-      color: "from-cyan-400 to-cyan-600",
-    },
-    {
-      id: 3,
-      type: "Rekan Kerja",
-      activity: "Meeting tim",
-      time: "3 hari lalu",
-      sentiment: "Netral",
-      avatar: "RK",
-      color: "from-gray-400 to-gray-600",
-    },
-  ];
+  const recentInteractions = emologData
+    .slice(-3)
+    .reverse()
+    .map((item) => ({
+      id: item.id,
+      type: item.interaction_with,
+      activity: item.activity,
+      time: item.date,
+      sentiment: item.emotion,
+      avatar: item.interaction_with?.slice(0, 2).toUpperCase() || "??",
+      color: "from-sky-400 to-blue-600",
+    }));
 
   const handleLogout = () => {
     if (confirm("Apakah kamu yakin mau pergi:( ?")) {
@@ -424,18 +471,26 @@ const getInitials = (fullName?: string) => {
                   <ChevronDown className="w-4 h-4 ml-2" />
                 </button>
               </div>
-              <div className="h-48 sm:h-72 bg-gradient-to-br from-sky-50 via-sky-100 to-blue-50 rounded-2xl flex items-center justify-center border-2 border-dashed border-sky-200">
-                <div className="text-center text-sky-600 px-4">
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-sky-400 to-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 shadow-lg">
-                    <BarChart3 className="h-8 w-8 sm:h-10 sm:w-10 text-white" />
-                  </div>
-                  <p className="text-lg sm:text-xl font-bold mb-2 sm:mb-3">
-                    Grafik Emosi
-                  </p>
-                  <p className="text-xs sm:text-sm text-sky-500 max-w-xs">
-                    Data tersedia setelah minimal 3 hari input emosi reguler
-                  </p>
-                </div>
+              <div className="h-48 sm:h-72 bg-gradient-to-br from-sky-50 via-sky-100 to-blue-50 rounded-2xl border border-sky-200 shadow-md p-4">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={chartData}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#cbd5e1" />
+                    <XAxis dataKey="date" stroke="#0ea5e9" />
+                    <YAxis domain={[0, 5]} stroke="#0ea5e9" />
+                    <Tooltip
+                      contentStyle={{
+                        backgroundColor: "#f0f9ff",
+                        borderColor: "#bae6fd",
+                        color: "#0369a1",
+                      }}
+                    />
+                    <Bar
+                      dataKey="score"
+                      fill="#0ea5e9"
+                      radius={[8, 8, 0, 0]}
+                    />
+                  </BarChart>
+                </ResponsiveContainer>
               </div>
             </div>
 
@@ -505,7 +560,7 @@ const getInitials = (fullName?: string) => {
               </div>
               <div className="mt-6 sm:mt-8 text-center">
                 <a
-                  href="/social-flow"
+                  href="/emolog"
                   className="flex items-center justify-center mx-auto text-sky-600 hover:text-sky-800 font-bold transition-colors group text-sm"
                 >
                   Lihat semua interaksi
