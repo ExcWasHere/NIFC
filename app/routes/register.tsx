@@ -1,6 +1,16 @@
-// app/routes/register.tsx
-import { json, redirect, type ActionFunctionArgs, type LoaderFunctionArgs } from "@remix-run/node";
-import { Form, Link, MetaFunction, useActionData, useNavigation } from "@remix-run/react";
+import {
+  json,
+  redirect,
+  type ActionFunctionArgs,
+  type LoaderFunctionArgs,
+} from "@remix-run/node";
+import {
+  Form,
+  Link,
+  MetaFunction,
+  useActionData,
+  useNavigation,
+} from "@remix-run/react";
 import { commitSession, getSession } from "~/utils/session.server";
 
 export const meta: MetaFunction = () => {
@@ -12,11 +22,11 @@ export const meta: MetaFunction = () => {
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const session = await getSession(request.headers.get("Cookie"));
-  
+
   if (session.has("userId")) {
     return redirect("/dashboard");
   }
-  
+
   return json({});
 }
 
@@ -27,10 +37,10 @@ export async function action({ request }: ActionFunctionArgs) {
   const password = formData.get("password");
   const passwordConfirmation = formData.get("password_confirmation");
 
-  const errors: { 
-    name?: string; 
-    email?: string; 
-    password?: string; 
+  const errors: {
+    name?: string;
+    email?: string;
+    password?: string;
     password_confirmation?: string;
   } = {};
 
@@ -54,17 +64,24 @@ export async function action({ request }: ActionFunctionArgs) {
     return json({ errors }, { status: 400 });
   }
 
-  // Simple registration without database
-  // In a real app, you would save to database here
+  const response = await fetch("http://localhost:5000/api/register", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name, email, password }),
+  });
+
+  if (!response.ok) {
+    const data = await response.json();
+    return json({ errors: { email: data.error } }, { status: 400 });
+  }
+
+  const user = await response.json();
   const session = await getSession(request.headers.get("Cookie"));
-  session.set("userId", Date.now().toString());
-  session.set("userEmail", email as string);
-  session.set("userName", name as string);
-  
+  session.set("userId", user.id.toString());
+  session.set("userEmail", user.email);
+  session.set("userName", user.name);
   return redirect("/dashboard", {
-    headers: {
-      "Set-Cookie": await commitSession(session),
-    },
+    headers: { "Set-Cookie": await commitSession(session) },
   });
 }
 
@@ -80,12 +97,17 @@ export default function Register() {
         <div className="bg-white p-10">
           <div className="mb-8">
             <h2 className="text-3xl font-bold text-sky-900">Sembiru</h2>
-            <p className="text-sky-700 mt-2">Daftar untuk memulai perjalanan kesehatan mental Anda.</p>
+            <p className="text-sky-700 mt-2">
+              Daftar untuk memulai perjalanan kesehatan mental Anda.
+            </p>
           </div>
 
           <Form method="post" className="space-y-5">
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-sky-800">
+              <label
+                htmlFor="name"
+                className="block text-sm font-medium text-sky-800"
+              >
                 Nama Lengkap
               </label>
               <input
@@ -96,12 +118,17 @@ export default function Register() {
                 className="mt-1 w-full px-4 py-3 border border-sky-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500"
               />
               {actionData?.errors?.name && (
-                <span className="text-sm text-red-600">{actionData.errors.name}</span>
+                <span className="text-sm text-red-600">
+                  {actionData.errors.name}
+                </span>
               )}
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-sky-800">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-sky-800"
+              >
                 Email
               </label>
               <input
@@ -112,12 +139,17 @@ export default function Register() {
                 className="mt-1 w-full px-4 py-3 border border-sky-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500"
               />
               {actionData?.errors?.email && (
-                <span className="text-sm text-red-600">{actionData.errors.email}</span>
+                <span className="text-sm text-red-600">
+                  {actionData.errors.email}
+                </span>
               )}
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-sky-800">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-sky-800"
+              >
                 Password
               </label>
               <input
@@ -128,12 +160,17 @@ export default function Register() {
                 className="mt-1 w-full px-4 py-3 border border-sky-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500"
               />
               {actionData?.errors?.password && (
-                <span className="text-sm text-red-600">{actionData.errors.password}</span>
+                <span className="text-sm text-red-600">
+                  {actionData.errors.password}
+                </span>
               )}
             </div>
 
             <div>
-              <label htmlFor="password-confirm" className="block text-sm font-medium text-sky-800">
+              <label
+                htmlFor="password-confirm"
+                className="block text-sm font-medium text-sky-800"
+              >
                 Konfirmasi Password
               </label>
               <input
@@ -144,7 +181,9 @@ export default function Register() {
                 className="mt-1 w-full px-4 py-3 border border-sky-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500"
               />
               {actionData?.errors?.password_confirmation && (
-                <span className="text-sm text-red-600">{actionData.errors.password_confirmation}</span>
+                <span className="text-sm text-red-600">
+                  {actionData.errors.password_confirmation}
+                </span>
               )}
             </div>
 
@@ -161,7 +200,10 @@ export default function Register() {
             <div className="text-center">
               <p className="text-sm text-sky-700">
                 Sudah memiliki akun?{" "}
-                <Link to="/login" className="font-medium text-sky-600 hover:text-sky-800">
+                <Link
+                  to="/login"
+                  className="font-medium text-sky-600 hover:text-sky-800"
+                >
                   Masuk
                 </Link>
               </p>
@@ -179,7 +221,9 @@ export default function Register() {
                 alt="Sembiru Logo"
                 className="h-24 w-24 mx-auto mb-6 opacity-90"
               />
-              <h3 className="mt-6 text-2xl font-bold text-white">Hai! Selamat Datang</h3>
+              <h3 className="mt-6 text-2xl font-bold text-white">
+                Hai! Selamat Datang
+              </h3>
               <p className="mt-2 text-white text-opacity-90">
                 Ayo Peduli akan Kesehatan Mental Anda Bersama Sembiru!
               </p>

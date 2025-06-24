@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const { Emotion } = require('../models');
 
-// [POST] Simpan emosi
 router.post('/', async (req, res) => {
   try {
     const data = await Emotion.create(req.body);
@@ -12,7 +11,6 @@ router.post('/', async (req, res) => {
   }
 });
 
-// [GET] Ambil emosi user tertentu (7 hari terakhir)
 router.get('/', async (req, res) => {
   const { user_id, period = 7 } = req.query;
   const dateLimit = new Date();

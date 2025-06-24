@@ -35,22 +35,32 @@ const EmologPage = () => {
   const [note, setNote] = useState('');
   const [history, setHistory] = useState<any[]>([]);
 
-  const handleSave = () => {
-    if (!selected) return;
-    const now = new Date();
-    setHistory([
-      {
-        id: now.getTime(),
-        emotion: selected,
-        note,
-        date: now.toLocaleDateString(),
-        time: now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-      },
-      ...history
-    ]);
-    setSelected(null);
-    setNote('');
+  const handleSave = async () => {
+  if (!selected) return;
+
+  const userId = 1;
+  const payload = {
+    user_id: userId,
+    emotion: selected,
+    note,
+    interaction_with: "Teman",
+    activity: "Ngobrol bareng",
+    mood: "Positif",
+    date: new Date().toISOString().split("T")[0],
   };
+
+  const res = await fetch("http://localhost:5000/api/emolog", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+
+  if (res.ok) {
+    setNote("");
+    setSelected(null);
+  }
+};
+
 
   const handleDelete = (id: number) => {
     setHistory(history.filter(h => h.id !== id));

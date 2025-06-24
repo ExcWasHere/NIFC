@@ -1,5 +1,17 @@
-import { json, redirect, type ActionFunctionArgs, type LoaderFunctionArgs } from "@remix-run/node";
-import { Form, Link, MetaFunction, useActionData, useNavigation, useSearchParams } from "@remix-run/react";
+import {
+  json,
+  redirect,
+  type ActionFunctionArgs,
+  type LoaderFunctionArgs,
+} from "@remix-run/node";
+import {
+  Form,
+  Link,
+  MetaFunction,
+  useActionData,
+  useNavigation,
+  useSearchParams,
+} from "@remix-run/react";
 import { commitSession, getSession } from "~/utils/session.server";
 import { useEffect, useState } from "react";
 
@@ -37,20 +49,49 @@ export async function action({ request }: ActionFunctionArgs) {
     return json({ errors }, { status: 400 });
   }
 
-  if (email === "DewiChalissa01@gmail.com" && password === "password") {
-    const session = await getSession(request.headers.get("Cookie"));
-    session.set("userId", "1");
-    session.set("userEmail", email);
-    return redirect("/dashboard", {
-      headers: {
-        "Set-Cookie": await commitSession(session),
-      },
+  try {
+    const response = await fetch("http://localhost:5000/api/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
     });
-  }
 
-  return json({
-    errors: { email: "Email atau password salah", password: undefined }
-  }, { status: 400 });
+    if (!response.ok) {
+      const data = await response.json();
+      console.error("Login API error:", data);
+      return json({ errors: { email: data.error } }, { status: 400 });
+    }
+
+    const user = await response.json();
+    console.log("User data from API:", user);
+    if (!user.id || !user.name || !user.email) {
+      console.error("Incomplete user data:", user);
+      return json({ 
+        errors: { email: "Data user tidak lengkap" } 
+      }, { status: 400 });
+    }
+
+    const session = await getSession(request.headers.get("Cookie"));
+    session.set("userId", user.id.toString());
+    session.set("userEmail", user.email);
+    session.set("userName", user.name);
+    
+    console.log("Setting session data:", {
+      userId: user.id.toString(),
+      userEmail: user.email,
+      userName: user.name
+    });
+
+    return redirect("/dashboard", {
+      headers: { "Set-Cookie": await commitSession(session) },
+    });
+    
+  } catch (error) {
+    console.error("Login fetch error:", error);
+    return json({ 
+      errors: { email: "Terjadi kesalahan koneksi" } 
+    }, { status: 500 });
+  }
 }
 
 export default function Login() {
@@ -76,8 +117,16 @@ export default function Login() {
       {showPopup && (
         <div className="fixed top-5 right-5 z-50 bg-sky-100 border border-sky-300 text-sky-800 px-4 py-3 rounded-lg shadow-lg transform opacity-0 animate-[fade-slide-right_0.4s_ease-out_forwards]">
           <div className="flex items-center">
-            <svg className="w-5 h-5 mr-2 text-sky-600" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11V5a1 1 0 10-2 0v2a1 1 0 001 1h2a1 1 0 100-2h-1zm-1 4a1 1 0 100 2 1 1 0 000-2z" clipRule="evenodd" />
+            <svg
+              className="w-5 h-5 mr-2 text-sky-600"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fillRule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11V5a1 1 0 10-2 0v2a1 1 0 001 1h2a1 1 0 100-2h-1zm-1 4a1 1 0 100 2 1 1 0 000-2z"
+                clipRule="evenodd"
+              />
             </svg>
             <span>Maaf, login dulu yuk!</span>
           </div>
@@ -88,11 +137,18 @@ export default function Login() {
         <div className="bg-white p-10">
           <div className="mb-8">
             <h2 className="text-3xl font-bold text-sky-900">Sembiru</h2>
-            <p className="text-sky-700 mt-2">Masuk untuk melanjutkan perjalanan kesehatan mental Anda.</p>
+            <p className="text-sky-700 mt-2">
+              Masuk untuk melanjutkan perjalanan kesehatan mental Anda.
+            </p>
           </div>
           <Form method="post" className="space-y-6">
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-sky-800">Email</label>
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-sky-800"
+              >
+                Email
+              </label>
               <input
                 id="email"
                 type="email"
@@ -101,11 +157,18 @@ export default function Login() {
                 className="mt-1 w-full px-4 py-3 border border-sky-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500"
               />
               {actionData?.errors?.email && (
-                <span className="text-sm text-red-600">{actionData.errors.email}</span>
+                <span className="text-sm text-red-600">
+                  {actionData.errors.email}
+                </span>
               )}
             </div>
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-sky-800">Password</label>
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-sky-800"
+              >
+                Password
+              </label>
               <input
                 id="password"
                 type="password"
@@ -114,7 +177,9 @@ export default function Login() {
                 className="mt-1 w-full px-4 py-3 border border-sky-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500"
               />
               {actionData?.errors?.password && (
-                <span className="text-sm text-red-600">{actionData.errors.password}</span>
+                <span className="text-sm text-red-600">
+                  {actionData.errors.password}
+                </span>
               )}
             </div>
             <div className="flex items-center justify-between">
@@ -125,10 +190,20 @@ export default function Login() {
                   type="checkbox"
                   className="h-4 w-4 text-sky-600 border-sky-300 rounded focus:ring-sky-500"
                 />
-                <label htmlFor="remember" className="ml-2 block text-sm text-sky-700">Ingat Saya</label>
+                <label
+                  htmlFor="remember"
+                  className="ml-2 block text-sm text-sky-700"
+                >
+                  Ingat Saya
+                </label>
               </div>
               <div>
-                <Link to="/forgot-password" className="text-sm text-sky-600 hover:text-sky-800">Lupa Password?</Link>
+                <Link
+                  to="/forgot-password"
+                  className="text-sm text-sky-600 hover:text-sky-800"
+                >
+                  Lupa Password?
+                </Link>
               </div>
             </div>
             <div>
@@ -143,7 +218,10 @@ export default function Login() {
             <div className="text-center">
               <p className="text-sm text-sky-700">
                 Belum memiliki akun?{" "}
-                <Link to="/register" className="font-medium text-sky-600 hover:text-sky-800">
+                <Link
+                  to="/register"
+                  className="font-medium text-sky-600 hover:text-sky-800"
+                >
                   Daftar sekarang
                 </Link>
               </p>
@@ -153,9 +231,17 @@ export default function Login() {
         <div className="hidden lg:block bg-gradient-to-br from-sky-300 to-blue-300 p-10 relative overflow-hidden">
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center z-10">
-              <img src="/favicon.ico" alt="Sembiru Logo" className="h-24 w-24 mx-auto mb-6 opacity-90" />
-              <h3 className="mt-6 text-2xl font-bold text-white">Hai! Selamat Datang Kembali</h3>
-              <p className="mt-2 text-white text-opacity-90">Peduli kesehatan mental Anda bersama Sembiru.</p>
+              <img
+                src="/favicon.ico"
+                alt="Sembiru Logo"
+                className="h-24 w-24 mx-auto mb-6 opacity-90"
+              />
+              <h3 className="mt-6 text-2xl font-bold text-white">
+                Hai! Selamat Datang Kembali
+              </h3>
+              <p className="mt-2 text-white text-opacity-90">
+                Peduli kesehatan mental Anda bersama Sembiru.
+              </p>
             </div>
           </div>
           <div className="absolute -bottom-16 -right-16 w-64 h-64 rounded-full bg-blue-200 opacity-50"></div>
