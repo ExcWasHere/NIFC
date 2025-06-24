@@ -12,10 +12,16 @@ export const meta: MetaFunction = () => {
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const session = await getSession(request.headers.get("Cookie"));
+
   if (!session.has("userId")) {
-    return redirect("/login?unauthorized=1");
+    return json({ error: "Unauthorized" }, { status: 401 });
   }
-  return json({});
+
+  return json({
+    userId: session.get("userId"),
+    userName: session.get("userName"),
+    userEmail: session.get("userEmail"),
+  });
 }
 
 export default function Index() {

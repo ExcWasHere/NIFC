@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     interaction_with: {
-      type: DataTypes.ENUM('Teman', 'Keluarga', 'Rekan Kerja', 'Pasangan'),
+      type: DataTypes.ENUM('Teman', 'Keluarga', 'Rekan Kerja', 'Pasangan', 'Lainnya'),
       allowNull: false
     },
     activity: {
