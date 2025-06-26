@@ -78,6 +78,7 @@ export default function IndexFeatures(): JSX.Element {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
       <div className="container mx-auto px-4 py-16 w-[90vw]">
+        {/* Hero Section */}
         <div className="flex flex-col lg:flex-row justify-between gap-12 mb-20">
           <p className="max-w-2xl text-xl md:text-2xl text-gray-600 leading-relaxed font-light italic text-justify">
             Sembiru adalah inovasi digital yang membantu pengguna memantau dan memahami kesehatan mental secara mandiri.
@@ -90,13 +91,8 @@ export default function IndexFeatures(): JSX.Element {
           </h1>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {featureList.map((feature) => (
-            <FeatureCard key={feature.id} feature={feature} />
-          ))}
-        </div>
-
-        <div className="mt-20 flex flex-col lg:flex-row items-center justify-between gap-12">
+        {/* Why Choose Sembiru Section */}
+        <div className="mb-20 flex flex-col lg:flex-row items-center justify-between gap-12">
           <div className="lg:w-1/2">
             <div className="relative">
               <div className="absolute inset-0 bg-sky-200 rounded-xl transform -rotate-3"></div>
@@ -140,6 +136,13 @@ export default function IndexFeatures(): JSX.Element {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Features Section */}
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {featureList.map((feature) => (
+            <FeatureCard key={feature.id} feature={feature} />
+          ))}
         </div>
       </div>
     </div>
